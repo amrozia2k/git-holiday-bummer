@@ -1,0 +1,17 @@
+---
+   - name: INSTALLING MULTIPS RPM's VIA LOOPING
+     hosts: all
+     vars:
+      PACKAGES:
+       -httpd
+       -vsftpd
+       -telnet
+       -chrony
+       -nfs-utils
+     tasks:
+      - name: Installing rpms
+        yum:
+          name: "{{ item }}"
+          state: "{{ item.installed}}"
+        loop: "{{ PACKAGES }}"
+...      
